@@ -1,13 +1,21 @@
-import type { NextConfig } from "next";
+import { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  output: "export", // Ensures static export for GitHub Pages
-  basePath: "/road-damage-app", // Must match the GitHub repo name
-  assetPrefix: "/road-damage-app/", // Ensures correct asset loading
+  reactStrictMode: true,
+  swcMinify: true,
   images: {
-    unoptimized: true, // Disable image optimization (necessary for static export)
+    domains: ['placeholder.svg'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
   },
-  trailingSlash: true, // Ensures all links end with `/`, preventing routing issues
-};
+  experimental: {
+    // Enable server actions
+    serverActions: true,
+  },
+}
 
-export default nextConfig;
+export default nextConfig
